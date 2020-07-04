@@ -1,0 +1,16 @@
+<li [ngClass] ="{
+'list-group-item-success': status==='allumé',
+'list-group-item-danger': status==='éteint'
+}">
+    <div 
+    style="width:10px;height:10px;"
+    [ngStyle]="{backgroundColor: getColor()}"
+    
+    ></div>
+    <p [ngStyle]="{color: getColor()}">l'appareil a yizem negh, {{ deviceName }} - {{ getStatus() }} - {{indexOfDevice}}
+        <span *ngIf="status==='éteint'">allume connard</span> 
+    </p>
+    <button class="btn btn-success" (click)="onSwitchOn()" [disabled]="status==='allumé'">allumer</button>
+    <button class="btn btn-danger" (click)="onSwitchOff()" [disabled]="status==='éteint'">éteindre</button>
+    <input type="text" [(ngModel)]="deviceName" />
+</li>
