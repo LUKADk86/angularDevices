@@ -9,6 +9,7 @@
     ></div>
     <p [ngStyle]="{color: getColor()}">l'appareil a yizem negh, {{ deviceName }} - {{ getStatus() }} - {{indexOfDevice}}
         <span *ngIf="status==='éteint'">allume connard</span> 
+        <a [routerLink]="[id]">Détails</a>
     </p>
     <button class="btn btn-success" (click)="onSwitchOn()" [disabled]="status==='allumé'">allumer</button>
     <button class="btn btn-danger" (click)="onSwitchOff()" [disabled]="status==='éteint'">éteindre</button>
