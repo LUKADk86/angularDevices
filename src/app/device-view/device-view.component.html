@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Dernière actualisation: {{lastUpdate | async | date:'yMMMMEEEd' | uppercase}}</h2>
+     <app-device 
+     *ngFor="let device of devices; let i = index"
+     [indexOfDevice]= "i"
+     [deviceName]="device.name"
+     [status]="device.status"
+     
+     ></app-device>
+     <button 
+     class="btn btn-success"
+     [disabled]="!isAuth"
+     (click)="onCheck()" 
+     >
+     tout allumer
+    </button>
+    <button class="btn btn-danger" (click)="onPutOut()">Tout éteindre</button>
+    
+    
+    </div>

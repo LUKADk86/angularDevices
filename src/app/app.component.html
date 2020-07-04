@@ -1,20 +1,14 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+            <li routerLinkActive="active"><a routerLink="devices">Appareils</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-<h2>Dernière actualisation: {{lastUpdate | async | date:'yMMMMEEEd' | uppercase}}</h2>
- <app-device 
- *ngFor="let device of devices; let i = index"
- [indexOfDevice]= "i"
- [deviceName]="device.name"
- [status]="device.status"
- 
- ></app-device>
- <button 
- class="btn btn-success"
- [disabled]="!isAuth"
- (click)="onCheck()" 
- >
- tout allumer
-</button>
-<button class="btn btn-danger" (click)="onPutOut()">Tout éteindre</button>
+<router-outlet></router-outlet>
 
 
 </div>
