@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeviceComponent } from './device/device.component';
 
@@ -17,6 +17,8 @@ import { AuthGuard } from './services/auth-guard.service';
 import { EditDeviceComponent } from './edit-device/edit-device.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user.service';
+import { NewUserComponent } from './new-user/new-user.component';
+
 
 
 const appRoutes: Routes = [
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'edit', canActivate: [AuthGuard], component: EditDeviceComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'users', component: UserListComponent},
+  { path: 'new', component: NewUserComponent},
   { path: '', component: DeviceViewComponent},
   { path: 'not-found', component: FourOhFourComponent},
   { path: '**', redirectTo: '/not-found'}
@@ -39,11 +42,14 @@ const appRoutes: Routes = [
     SigleDeviceComponent,
     FourOhFourComponent,
     EditDeviceComponent,
-    UserListComponent
+    UserListComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

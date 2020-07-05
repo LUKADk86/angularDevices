@@ -1,25 +1,15 @@
 import { Subject } from 'rxjs/Subject';
-
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+@Injectable()
 export class DeviceService {
+
+    constructor(private httpClient: HttpClient){}
 
     deviceSubject = new Subject<any[]>();
 
     private devices = [
-        {
-            id: 1,
-            name: 'Machine à laver',
-            status: 'éteint'
-        },
-        {
-            id: 2,
-            name: 'Frigo',
-            status: 'allumé'
-        },
-        {
-            id: 3,
-            name: 'Ordinateur',
-            status: 'éteint'
-        }
+       
     ];
 
 
@@ -70,5 +60,31 @@ export class DeviceService {
     swithOff(index: number) {
         this.devices[index].status = "éteint";
         this.emitDeviceSubject();
+    }
+    saveDeviceToServer(){
+        this.httpClient.put('https://http-client-9c0a6.firebaseio.com/devices.json',
+        this.devices   
+        ).subscribe(
+            ()=>{
+                console.log('réussi');
+            },
+            (error)=>{
+                console.log(error);
+            }
+        )
+    }
+    getDevicesfromServer(){
+        this.httpClient.get<any[]>('https://http-client-9c0a6.firebaseio.com/devices.json'
+
+        ).subscribe(
+            (response)=>{
+                this.devices = response;
+                this.emitDeviceSubject();
+                
+            },
+            (error)=>{
+                console.log(error);
+            }
+        )
     }
 }
