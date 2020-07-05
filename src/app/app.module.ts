@@ -14,12 +14,17 @@ import { AuthService } from './services/auth.service';
 import { SigleDeviceComponent } from './sigle-device/sigle-device.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { EditDeviceComponent } from './edit-device/edit-device.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserService } from './services/user.service';
 
 
 const appRoutes: Routes = [
   { path: 'devices', canActivate: [AuthGuard],component: DeviceViewComponent},
   { path: 'devices/:id', canActivate: [AuthGuard], component: SigleDeviceComponent},
+  { path: 'edit', canActivate: [AuthGuard], component: EditDeviceComponent},
   { path: 'auth', component: AuthComponent},
+  { path: 'users', component: UserListComponent},
   { path: '', component: DeviceViewComponent},
   { path: 'not-found', component: FourOhFourComponent},
   { path: '**', redirectTo: '/not-found'}
@@ -32,7 +37,9 @@ const appRoutes: Routes = [
     AuthComponent,
     DeviceViewComponent,
     SigleDeviceComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    EditDeviceComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,8 @@ const appRoutes: Routes = [
   providers: [
     DeviceService,
     AuthService, 
-    AuthGuard
+    AuthGuard, 
+    UserService
   ],
   bootstrap: [AppComponent]
 })

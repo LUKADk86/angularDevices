@@ -4,10 +4,13 @@
         <ul class="nav navbar-nav">
             <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
             <li routerLinkActive="active"><a routerLink="devices">Appareils</a></li>
+            <li routerLinkActive="active"><a routerLink="edit">editer un appareil</a></li>
+            <li routerLinkActive="active"><a routerLink="users">Utilisateurs</a></li>
         </ul>
     </div>
 </nav>
 <div class="container">
+    <p>vous êtes connecté depuis {{second}} secondes </p>
 <router-outlet></router-outlet>
 
 
